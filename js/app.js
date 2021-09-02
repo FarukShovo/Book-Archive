@@ -11,10 +11,10 @@ const searchField = () => {
     console.log(url);
     fetch(url)
         .then(response => response.json())
-        .then(data => displaySearchResult(data.docs))
+        .then(data => displaySearchResult(data.docs, data.numFound))
 }
 
-const displaySearchResult = books => {
+const displaySearchResult = (books, bookNumber) => {
     const displayResult = document.getElementById('display-result');
 
     document.getElementById('spinner').style.display = 'none'
@@ -25,7 +25,7 @@ const displaySearchResult = books => {
 
     // console.log(books.length)
     document.getElementById('book-numbers').style.display = 'block'
-    document.getElementById('book-numbers').innerText = `You have found ${books.length} Books! `;
+    document.getElementById('book-numbers').innerText = `You have found ${bookNumber} Books! `;
 
     books.forEach(book => {
         const resultDiv = document.createElement('div');
@@ -38,7 +38,7 @@ const displaySearchResult = books => {
                             <h5 class="card-title">Title : ${book.title}</h5>
                             <p class="card-text">Author Name : ${book.author_name} </p>
                             <p class="card-text">Publisher : ${book.publisher} </p>
-                            <p class="card-text">First Publish : ${book.first_publish_year} </p>
+                            <p class="card-text">First Publish : ${book.first_publish_year ? book.first_publish_year : 'N/A'} </p>
                         </div>
                     </div>
         `;
