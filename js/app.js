@@ -15,7 +15,7 @@ const searchField = () => {
         document.getElementById('error-message').style.display = 'none'
         document.getElementById('spinner').style.display = 'block'
 
-        const url = `http://openlibrary.org/search.json?q=${searchText}`
+        const url = `https://openlibrary.org/search.json?q=${searchText}`
         console.log(url);
         fetch(url)
             .then(response => response.json())
